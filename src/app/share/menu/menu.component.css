@@ -1,0 +1,10 @@
+.p-menubar {
+    background: transparent;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-bottom: 2px solid red;
+    border-right: 2px solid red;
+    width: 80%;
+    margin: auto;
+    display: flex !important;
+}
