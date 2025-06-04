@@ -1,64 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+import { playerDto } from '../dto/playerDto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayersService {
+  private url = "http://localhost:8080/players/light";
 
-  private searchValueSubject = new BehaviorSubject<string>('');
-  searchValue$: Observable<string> = this.searchValueSubject.asObservable();
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
-
-  getPlayers(): Promise<any> {
-    return Promise.resolve(
-      [
-        {
-          name: "Edouard",
-          country: "France"
-        },
-        {
-          name: "Junior Santos",
-          country: "Brésil"
-        },
-        {
-          name: "Javier Hernandez",
-          country: "Espagne"
-        },
-        {
-          name: "Lucas Diminiti",
-          country: "Italie"
-        },
-        {
-          name: "Gunter Grotze",
-          country: "Allemagne"
-        },
-        {
-          name: "Jack Rosenfield",
-          country: "Angleterre"
-        },
-        {
-          name: "Gunter Grotze",
-          country: "Allemagne"
-        },
-        {
-          name: "Jack Rosenfield",
-          country: "Angleterre"
-        },
-        {
-          name: "Gunter Grotze",
-          country: "Allemagne"
-        },
-        {
-          name: "Jack Rosenfield",
-          country: "Angleterre"
-        },
-      ]
-    );
-  }
-
-  setSearchObservable(search$: Observable<string>) {
-    search$.subscribe(value => this.searchValueSubject.next(value));
+  getPlayers(): Observable<playerDto[]> {
+    return this.http.get<playerDto[]>(this.url, {});
   }
 }

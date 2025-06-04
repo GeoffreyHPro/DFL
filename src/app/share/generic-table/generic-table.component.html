@@ -1,16 +1,22 @@
 <div class="card">
-    <p-table [value]="customers" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+    <p-table [value]="values" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }"
         [rowsPerPageOptions]="[5, 10]">
+        @for (value of values; track $index) {}
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:25%">Name</th>
-                <th style="width:25%">Country</th>
+                <th *ngFor="let label of labels">{{ label.header }}</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
+        <ng-template pTemplate="body" let-value>
             <tr>
-                <td>{{ customer.name }}</td>
-                <td>{{ customer.country }}</td>
+                <td *ngFor="let label of labels">
+                    <ng-container *ngIf="label.field !== 'actions'; else actionCol">
+                        {{ value[label.field] }}
+                    </ng-container>
+                    <ng-template #actionCol>
+                        <p-button label="Detail" (onClick)="actionHandler(value)"></p-button>
+                    </ng-template>
+                </td>
             </tr>
         </ng-template>
     </p-table>

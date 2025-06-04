@@ -1,9 +1,9 @@
 <app-menu></app-menu>
 <br>
 
-
 <div id="table">
     <br>
     <br>
-    <app-generic-table></app-generic-table>
+    <app-generic-table [labels]="playersActionService.labels" [values]="players"
+        [actionHandler]="playersActionService.onAction.bind(playersActionService)"></app-generic-table>
 </div>

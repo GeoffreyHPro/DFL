@@ -1,14 +1,17 @@
-import { Component, ViewChild, viewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MenuComponent } from '../../share/menu/menu.component';
 import { GenericTableComponent } from '../../share/generic-table/generic-table.component';
 import { SearchBarComponent } from '../../share/search-bar/search-bar.component';
 import { Subscription } from 'rxjs';
 import { PlayersService } from '../../core/repository/playersRepository.service';
+import { playerDto } from '../../core/dto/playerDto';
+import { PlayersActionService } from '../../core/action/players-action.service';
 
 @Component({
   selector: 'app-players',
   standalone: true,
-  imports: [MenuComponent, GenericTableComponent, SearchBarComponent],
+  imports: [MenuComponent, GenericTableComponent],
+  providers: [SearchBarComponent],
   templateUrl: './players.component.html',
   styleUrl: './players.component.css'
 })
@@ -18,13 +21,16 @@ export class PlayersComponent {
 
   subscription = new Subscription();
 
-  constructor(private playersService: PlayersService) {
-    this.subscription.add(this.playersService.searchValue$.subscribe(value => console.log("The : " + value)));
+  players: playerDto[] = [];
+
+  constructor(
+    private playersService: PlayersService,
+    public playersActionService: PlayersActionService
+  ) {
+    this.playersService.getPlayers().subscribe(players => this.players = players);
   }
 
-  ngAfterViewInit() {
-    this.playersService.setSearchObservable(this.SearchBarComponent.search$);
-  }
+  ngOnInit() { }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
