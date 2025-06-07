@@ -27,7 +27,10 @@ export class PlayersComponent {
     private playersService: PlayersService,
     public playersActionService: PlayersActionService
   ) {
-    this.playersService.getPlayers().subscribe(players => this.players = players);
+    this.playersService.getPlayers().subscribe(players => {
+      this.players = players
+      console.log(players);
+    });
   }
 
   ngOnInit() { }

@@ -2,6 +2,20 @@
 
 <br>
 <br>
-<div style="margin: auto; width: 75%;">
-<app-generic-radar [dataset]="values" [maxValue]="20" [labels]="labels" [title]="player.firstName + ' ' + player.lastName"></app-generic-radar>
+@if (this.player) {
+<div style="margin: auto; width: 75%;" class="container">
+    <div class="column">
+
+        <p-button icon="pi pi-arrow-left" (onClick)="goBack()"
+            styleClass="p-button-text p-button-rounded p-button-secondary">
+        </p-button>
+        <app-generic-radar [dataset]="values" [maxValue]="20" [labels]="labels"
+            [title]="player.firstName + ' ' + player.lastName"></app-generic-radar>
+    </div>
+    <br>
+    <br>
+    <div class="column">
+        <app-stats-player [player]="this.player"></app-stats-player>
+    </div>
 </div>
+}

@@ -13,6 +13,7 @@ export class PlayersActionService {
     { field: 'lastName', header: 'Nom' },
     { field: 'country', header: 'Pays' },
     { field: 'levelPlayer', header: 'Niveau' },
+    { field: 'overall', header: 'général'},
     { field: 'actions', header: 'Actions' }
   ]
 

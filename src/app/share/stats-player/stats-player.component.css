@@ -1,0 +1,35 @@
+.stat-value {
+  font-weight: bold;
+}
+
+.stat-name {
+  font-weight: 500;
+}
+
+.stat-18 {
+  color: #016635;
+}
+
+.stat-15 {
+  color: #0b9753;
+}
+
+.stat-13 {
+  color: #a9e600;
+}
+
+.stat-10 {
+  color: #e6c73f;
+}
+
+.stat-7 {
+  color: #e47712;
+}
+
+.stat-5 {
+  color: #ef5350;
+}
+
+.stat-3 {
+  color: #ff0000;
+}

@@ -22,7 +22,7 @@ export class GenericRadarComponent {
   constructor(private cd: ChangeDetectorRef) { }
 
   themeEffect = effect(() => {
-   
+
   });
 
   ngOnInit() {
@@ -65,10 +65,12 @@ export class GenericRadarComponent {
         },
         scales: {
           r: {
-            grid: {
-              color: textColorSecondary
+            ticks: {
+              display: false
             },
-            max: this.maxValue
+            grid: {
+            },
+            max: this.maxValue,
           }
         }
       };

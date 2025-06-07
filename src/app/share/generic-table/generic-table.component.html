@@ -10,11 +10,21 @@
         <ng-template pTemplate="body" let-value>
             <tr>
                 <td *ngFor="let label of labels">
-                    <ng-container *ngIf="label.field !== 'actions'; else actionCol">
-                        {{ value[label.field] }}
+                    <ng-container *ngIf="label.field === 'country'; else actionCol">
+                        <span>{{ getFlagEmoji(value[label.field]) }}</span>
                     </ng-container>
                     <ng-template #actionCol>
-                        <p-button label="Detail" (onClick)="actionHandler(value)"></p-button>
+                        <ng-container *ngIf="label.field === 'actions'; else level">
+                            <p-button label="Detail" (onClick)="actionHandler(value)"></p-button>
+                        </ng-container>
+                    </ng-template>
+                    <ng-template #level>
+                        <ng-container *ngIf="label.field === 'levelPlayer'; else default">
+                            <span class="pi pi-trophy" [style.color]="getTrophyColor(value[label.field])" style="font-size: 24px;"></span>
+                        </ng-container>
+                    </ng-template>
+                    <ng-template #default>
+                        {{value[label.field]}}
                     </ng-template>
                 </td>
             </tr>

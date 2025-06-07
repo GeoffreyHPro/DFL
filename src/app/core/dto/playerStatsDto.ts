@@ -3,9 +3,10 @@ export interface playerStatsDto {
     finishing: number,
     shotPower: number,
     longShot: number,
-    dribbling: number,
+    dribble: number,
+    passes: number,
     interception: number,
-    defending: number,
-    goalKeeperReflexes: number,
+    defense: number,
+    goalKeeperReflexe: number,
     goalKeeperDiving: number
 }
